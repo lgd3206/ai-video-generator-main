@@ -54,11 +54,11 @@ class ReplicateService {
     return this.makeRequest('/predictions', {
       method: 'POST',
       body: JSON.stringify({
-        version: 'text-to-video-model-version', // Replace with actual model version
+        // Using Zeroscope v2 XL for text-to-video generation
+        version: 'anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351',
         input: {
           prompt: params.prompt,
-          duration: params.duration || 3,
-          fps: params.fps || 24,
+          num_frames: (params.duration || 3) * (params.fps || 8), // Convert duration to frames
           width: params.width || 1024,
           height: params.height || 576,
         },
@@ -70,12 +70,13 @@ class ReplicateService {
     return this.makeRequest('/predictions', {
       method: 'POST',
       body: JSON.stringify({
-        version: 'image-to-video-model-version', // Replace with actual model version
+        // Using Stable Video Diffusion for image-to-video generation
+        version: 'stability-ai/stable-video-diffusion:3f0457e4619daac51203dedb1a4919c746e16d22e3dd4ef8c725f5a2010c6ea4',
         input: {
-          image: params.image,
-          prompt: params.prompt || '',
-          duration: params.duration || 3,
-          fps: params.fps || 24,
+          input_image: params.image,
+          motion_prompt: params.prompt || 'smooth motion',
+          frames_per_second: params.fps || 6,
+          num_frames: (params.duration || 3) * (params.fps || 6),
         },
       }),
     })
