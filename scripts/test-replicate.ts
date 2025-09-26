@@ -10,11 +10,11 @@ async function testReplicateAPI() {
     // Test text-to-video generation
     console.log('📝 Testing text-to-video generation...')
     const textToVideoResult = await replicateService.createTextToVideo({
-      prompt: 'A cat playing with a ball of yarn, high quality, 4k',
-      duration: 3,
+      prompt: 'A cute orange cat playing with a colorful ball of yarn on a soft carpet, close-up view',
+      duration: 2,
       fps: 8,
       width: 512,
-      height: 512,
+      height: 320,
     })
 
     console.log('✅ Text-to-video request successful!')

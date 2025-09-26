@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       const replicateResult = await replicateService.createTextToVideo({
         prompt,
         duration: 3,
-        fps: 24,
+        fps: 8,
         width: 1024,
         height: 576
       })

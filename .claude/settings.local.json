@@ -10,7 +10,8 @@
       "Bash(git remote add:*)",
       "Bash(git add:*)",
       "Bash(git push:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebFetch(domain:replicate.com)"
     ],
     "deny": [],
     "ask": []

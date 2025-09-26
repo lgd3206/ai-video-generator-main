@@ -51,16 +51,23 @@ class ReplicateService {
   }
 
   async createTextToVideo(params: TextToVideoParams): Promise<ReplicateResponse> {
+    // Enhance the prompt for better results
+    const enhancedPrompt = `${params.prompt}, high quality, detailed, cinematic`
+
     return this.makeRequest('/predictions', {
       method: 'POST',
       body: JSON.stringify({
-        // Using Zeroscope v2 XL for text-to-video generation
+        // Using proven Zeroscope v2 XL model with correct parameters
         version: 'anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351',
         input: {
-          prompt: params.prompt,
-          num_frames: (params.duration || 3) * (params.fps || 8), // Convert duration to frames
-          width: params.width || 1024,
-          height: params.height || 576,
+          prompt: enhancedPrompt,
+          batch_size: 1,
+          num_frames: 24,     // Fixed frame count
+          width: 1024,        // Standard resolution
+          height: 576,
+          fps: 8,
+          guidance_scale: 17.5,  // Good balance for prompt adherence
+          negative_prompt: "very blue, dust, noisy, washed out, ugly, distorted, watermark"
         },
       }),
     })
