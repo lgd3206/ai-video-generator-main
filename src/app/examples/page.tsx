@@ -13,8 +13,8 @@ export default function ExamplesPage() {
       <Head>
         <SEOHead
           page="home"
-          customTitle="AI视频作品展示库 | 精选案例和提示词 | AI Video Studio"
-          customDescription="浏览AI生成的精美视频作品集，获取创作灵感。包含详细提示词和制作技巧，助你创作出更好的AI视频。"
+          customTitle="AI Video Gallery | Featured Cases and Prompts | AI Video Studio"
+          customDescription="Browse a collection of stunning AI-generated videos for creative inspiration. Includes detailed prompts and creation techniques to help you create better AI videos."
         />
       </Head>
 
@@ -29,11 +29,11 @@ export default function ExamplesPage() {
               <Link href="/">
                 <Button variant="ghost" size="sm">
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  返回首页
+                  Back to Home
                 </Button>
               </Link>
               <Link href="/try-free">
-                <Button size="sm">免费试用</Button>
+                <Button size="sm">Try Free</Button>
               </Link>
             </div>
           </div>
@@ -43,11 +43,11 @@ export default function ExamplesPage() {
         <section className="py-16 px-4">
           <div className="container mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              AI视频作品
-              <span className="text-indigo-600 block">展示库</span>
+              AI Video Gallery
+              <span className="text-indigo-600 block">Showcase</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              探索用户使用AI Video Studio创作的精彩视频作品，学习优秀的提示词写法，获取创作灵感
+              Explore amazing video creations made by users with AI Video Studio, learn excellent prompt techniques, and get creative inspiration
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

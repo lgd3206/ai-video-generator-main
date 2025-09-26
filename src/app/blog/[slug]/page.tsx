@@ -12,12 +12,12 @@ export default function BlogPostPage() {
       <Head>
         <SEOHead
           page="home"
-          customTitle="如何用AI在30秒内制作专业级宣传视频 | AI Video Studio教程"
-          customDescription="详细教程：从文字描述到完成视频，让AI帮你快速制作高质量的商业宣传视频。包含实际案例和最佳实践。"
+          customTitle="How to Create Professional Promotional Videos with AI in 30 Seconds | AI Video Studio Tutorial"
+          customDescription="Detailed tutorial: From text description to finished video, let AI help you quickly create high-quality commercial promotional videos. Includes real cases and best practices."
         />
         <StructuredData type="Article" data={{
-          title: "如何用AI在30秒内制作专业级宣传视频",
-          description: "详细教程：从文字描述到完成视频，让AI帮你快速制作高质量的商业宣传视频",
+          title: "How to Create Professional Promotional Videos with AI in 30 Seconds",
+          description: "Detailed tutorial: From text description to finished video, let AI help you quickly create high-quality commercial promotional videos",
           publishedDate: "2024-01-15T00:00:00.000Z",
           modifiedDate: "2024-01-15T00:00:00.000Z",
           image: "/blog/professional-promo-video.jpg"
@@ -35,12 +35,12 @@ export default function BlogPostPage() {
               <Link href="/blog">
                 <Button variant="ghost" size="sm">
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  返回博客
+                  Back to Blog
                 </Button>
               </Link>
               <Button variant="outline" size="sm">
                 <Share2 className="w-4 h-4 mr-2" />
-                分享
+                Share
               </Button>
             </div>
           </div>
@@ -51,15 +51,15 @@ export default function BlogPostPage() {
           <header className="mb-8">
             <div className="flex items-center space-x-2 text-sm text-indigo-600 mb-4">
               <BookOpen className="w-4 h-4" />
-              <span>AI视频教程</span>
+              <span>AI Video Tutorial</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              如何用AI在30秒内制作专业级宣传视频
+              How to Create Professional Promotional Videos with AI in 30 Seconds
             </h1>
 
             <p className="text-xl text-gray-600 mb-6">
-              详细教程：从文字描述到完成视频，让AI帮你快速制作高质量的商业宣传视频
+              Detailed tutorial: From text description to finished video, let AI help you quickly create high-quality commercial promotional videos
             </p>
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 mb-8">
@@ -69,16 +69,16 @@ export default function BlogPostPage() {
               </div>
               <div className="flex items-center space-x-1">
                 <CalendarDays className="w-4 h-4" />
-                <span>2024年1月15日</span>
+                <span>January 15, 2024</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Clock className="w-4 h-4" />
-                <span>5分钟阅读</span>
+                <span>5 min read</span>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {['教程', '文本转视频', '商业视频', '快速制作'].map((tag) => (
+              {['Tutorial', 'Text-to-Video', 'Business Video', 'Quick Creation'].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 bg-indigo-50 text-indigo-600 text-sm rounded-full"
@@ -98,27 +98,27 @@ export default function BlogPostPage() {
           <div className="prose prose-lg max-w-none">
             <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
               <p className="text-blue-800 font-medium">
-                💡 <strong>快速导览：</strong>本教程将教你如何在30秒内使用AI制作专业级宣传视频，包含实际操作步骤和优化技巧。
+                💡 <strong>Quick Guide:</strong> This tutorial will teach you how to create professional promotional videos using AI in 30 seconds, including practical steps and optimization tips.
               </p>
             </div>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">为什么选择AI制作宣传视频？</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Choose AI for Promotional Videos?</h2>
             <p className="text-gray-700 mb-6">
-              传统的视频制作需要专业设备、复杂软件和大量时间。而AI视频生成技术让每个人都能在几十秒内创作出专业水准的视频内容。无论你是营销人员、小企业主还是内容创作者，AI都能帮你快速实现创意。
+              Traditional video production requires professional equipment, complex software, and significant time investment. AI video generation technology enables everyone to create professional-quality video content in seconds. Whether you're a marketer, small business owner, or content creator, AI can help you quickly realize your creative vision.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">制作流程概览</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Production Process Overview</h2>
             <div className="grid md:grid-cols-3 gap-6 my-8">
               <Card>
                 <CardHeader className="text-center">
                   <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-indigo-600 font-bold text-lg">1</span>
                   </div>
-                  <CardTitle className="text-lg">编写提示词</CardTitle>
+                  <CardTitle className="text-lg">Write Prompt</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    详细描述你想要的视频内容、风格和重点信息
+                    Describe in detail the video content, style, and key information you want
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -128,11 +128,11 @@ export default function BlogPostPage() {
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-purple-600 font-bold text-lg">2</span>
                   </div>
-                  <CardTitle className="text-lg">AI生成视频</CardTitle>
+                  <CardTitle className="text-lg">AI Generates Video</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    AI算法解析你的描述，生成符合要求的视频内容
+                    AI algorithm analyzes your description and generates video content that meets your requirements
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -142,56 +142,56 @@ export default function BlogPostPage() {
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-green-600 font-bold text-lg">3</span>
                   </div>
-                  <CardTitle className="text-lg">下载使用</CardTitle>
+                  <CardTitle className="text-lg">Download and Use</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    预览满意后下载视频，立即投入使用
+                    Preview and download the video when satisfied, ready for immediate use
                   </CardDescription>
                 </CardContent>
               </Card>
             </div>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">详细操作步骤</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Detailed Operation Steps</h2>
 
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">步骤1: 准备你的提示词</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 1: Prepare Your Prompt</h3>
             <p className="text-gray-700 mb-4">
-              成功的关键在于写出清晰、具体的描述。一个好的提示词应该包含以下要素：
+              The key to success lies in writing clear, specific descriptions. A good prompt should include the following elements:
             </p>
             <ul className="space-y-2 mb-6">
               <li className="flex items-start space-x-2">
                 <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>产品或服务描述：</strong>清楚说明你要推广的内容</span>
+                <span><strong>Product or Service Description:</strong> Clearly explain what you want to promote</span>
               </li>
               <li className="flex items-start space-x-2">
                 <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>视觉风格：</strong>现代简约、商务专业、活力动感等</span>
+                <span><strong>Visual Style:</strong> Modern minimalist, business professional, energetic dynamic, etc.</span>
               </li>
               <li className="flex items-start space-x-2">
                 <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>色彩偏好：</strong>指定主要颜色或色调</span>
+                <span><strong>Color Preferences:</strong> Specify main colors or tones</span>
               </li>
               <li className="flex items-start space-x-2">
                 <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>场景设置：</strong>办公室、户外、抽象背景等</span>
+                <span><strong>Scene Setting:</strong> Office, outdoor, abstract background, etc.</span>
               </li>
             </ul>
 
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
-              <h4 className="font-semibold text-gray-900 mb-3">示例提示词：</h4>
+              <h4 className="font-semibold text-gray-900 mb-3">Example Prompt:</h4>
               <p className="text-gray-700 italic border-l-4 border-indigo-400 pl-4">
-                &ldquo;创建一个30秒的科技公司宣传视频，展示云计算服务。现代简约风格，以蓝色和白色为主色调。
-                场景包括：数据中心服务器、云朵动画、网络连接可视化、商务人士使用笔记本电脑。
-                整体感觉专业可信，传达安全可靠的企业形象。&rdquo;
+                &ldquo;Create a 30-second tech company promotional video showcasing cloud computing services. Modern minimalist style, primarily blue and white tones.
+                Scenes include: data center servers, cloud animations, network connection visualizations, business people using laptops.
+                Overall feel: professional and trustworthy, conveying a secure and reliable corporate image.&rdquo;
               </p>
             </div>
 
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">步骤2: 使用AI Video Studio生成</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 2: Use AI Video Studio to Generate</h3>
             <p className="text-gray-700 mb-4">
-              将你的提示词输入到我们的文本转视频工具中：
+              Enter your prompt into our text-to-video tool:
             </p>
             <ol className="space-y-3 mb-6 pl-6">
-              <li className="text-gray-700">访问文本转视频页面</li>
+              <li className="text-gray-700">Visit the text-to-video page</li>
               <li className="text-gray-700">在文本框中粘贴你的详细描述</li>
               <li className="text-gray-700">点击&ldquo;生成视频&rdquo;按钮</li>
               <li className="text-gray-700">等待AI处理（通常需要20-30秒）</li>

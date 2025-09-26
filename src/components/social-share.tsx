@@ -28,11 +28,11 @@ interface SocialShareProps {
 }
 
 export default function SocialShare({
-  title = "我用AI创作了这个精彩的视频！",
-  description = "使用AI Video Studio轻松制作专业级视频内容，快来试试吧！",
+  title = "I created this amazing video with AI!",
+  description = "Create professional-grade video content effortlessly with AI Video Studio. Try it now!",
   url = "",
   imageUrl: _imageUrl = "", // Mark as unused but keep for API compatibility
-  hashtags = ["AI视频", "视频制作", "人工智能", "创作工具"],
+  hashtags = ["AIVideo", "VideoMaking", "AI", "CreativeTools"],
   className,
   showStats = false,
   stats = { views: 0, likes: 0, shares: 0 }
@@ -89,14 +89,14 @@ export default function SocialShare({
     },
     {
       id: 'wechat',
-      name: '微信',
+      name: 'WeChat',
       icon: MessageCircle,
       color: 'bg-green-500 hover:bg-green-600',
       getUrl: () => '#copy-for-wechat'
     },
     {
       id: 'email',
-      name: '邮件',
+      name: 'Email',
       icon: Mail,
       color: 'bg-gray-500 hover:bg-gray-600',
       getUrl: () => {
@@ -109,7 +109,7 @@ export default function SocialShare({
     if (platform.id === 'instagram' || platform.id === 'wechat') {
       // For platforms that don't support direct URL sharing
       const textToCopy = platform.id === 'instagram'
-        ? `${shareText}\n\n${hashtagString}\n\n查看更多：${currentUrl}`
+        ? `${shareText}\n\n${hashtagString}\n\nView more:${currentUrl}`
         : `${title}\n\n${shareText}\n\n${currentUrl}`
 
       try {
@@ -123,12 +123,12 @@ export default function SocialShare({
       window.open(platform.getUrl(), '_blank', 'width=600,height=400')
     }
 
-    // 记录分享统计
+    // Record share statistics
     recordShare(platform.id)
   }
 
   const recordShare = (platform: string) => {
-    // 这里可以发送分享统计到后端
+    // Send share statistics to backend
     console.log(`Shared to ${platform}`)
   }
 
@@ -144,57 +144,57 @@ export default function SocialShare({
   }
 
   const generateQRCode = () => {
-    // 这里可以集成二维码生成库
+    // QR code generation library can be integrated here
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}`
     window.open(qrUrl, '_blank')
   }
 
   return (
     <div className={cn("space-y-6", className)}>
-      {/* 分享统计 */}
+      {/* Share Statistics */}
       {showStats && (
         <div className="flex items-center space-x-6 text-sm text-gray-600">
           <div className="flex items-center space-x-1">
             <Eye className="w-4 h-4" />
-            <span>{stats.views?.toLocaleString() || 0} 次观看</span>
+            <span>{stats.views?.toLocaleString() || 0} views</span>
           </div>
           <div className="flex items-center space-x-1">
             <Heart className="w-4 h-4" />
-            <span>{stats.likes?.toLocaleString() || 0} 次点赞</span>
+            <span>{stats.likes?.toLocaleString() || 0} likes</span>
           </div>
           <div className="flex items-center space-x-1">
             <Share2 className="w-4 h-4" />
-            <span>{stats.shares?.toLocaleString() || 0} 次分享</span>
+            <span>{stats.shares?.toLocaleString() || 0} shares</span>
           </div>
         </div>
       )}
 
-      {/* 自定义分享内容 */}
+      {/* Custom Share Content */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Share2 className="w-5 h-5 text-indigo-600" />
-            <span>分享到社交媒体</span>
+            <span>Share to Social Media</span>
           </CardTitle>
           <CardDescription>
-            自定义分享内容，让更多人看到你的作品 {hasImage ? '(包含图片)' : '(纯文本)'}
+            Customize share content to let more people see your work {hasImage ? '(with image)' : '(text only)'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* 自定义标题 */}
+          {/* Custom Title */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">分享标题</label>
+            <label className="text-sm font-medium">Share Title</label>
             <Input
-              placeholder="输入吸引人的标题..."
+              placeholder="Enter an attractive title..."
               defaultValue={title}
             />
           </div>
 
-          {/* 自定义描述 */}
+          {/* Custom Description */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">分享描述</label>
+            <label className="text-sm font-medium">Share Description</label>
             <Textarea
-              placeholder="描述你的作品亮点..."
+              placeholder="Describe the highlights of your work..."
               value={customMessage || description}
               onChange={(e) => setCustomMessage(e.target.value)}
               rows={3}
@@ -202,9 +202,9 @@ export default function SocialShare({
             />
           </div>
 
-          {/* 标签 */}
+          {/* Tags */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">标签</label>
+            <label className="text-sm font-medium">Tags</label>
             <div className="flex flex-wrap gap-2">
               {hashtags.map((tag, index) => (
                 <Badge key={index} variant="outline" className="cursor-pointer">
@@ -212,19 +212,19 @@ export default function SocialShare({
                 </Badge>
               ))}
               <Button variant="ghost" size="sm" className="h-6 px-2 text-xs">
-                + 添加标签
+                + Add Tag
               </Button>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* 快捷分享按钮 */}
+      {/* Quick Share Buttons */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">快捷分享</CardTitle>
+          <CardTitle className="text-lg">Quick Share</CardTitle>
           <CardDescription>
-            点击图标即可快速分享到各个平台
+            Click icons to quickly share to various platforms
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -250,9 +250,9 @@ export default function SocialShare({
         </CardContent>
       </Card>
 
-      {/* 其他分享选项 */}
+      {/* Other Share Options */}
       <div className="grid md:grid-cols-3 gap-4">
-        {/* 复制链接 */}
+        {/* Copy Link */}
         <Card>
           <CardContent className="p-4 text-center">
             <Button
@@ -263,17 +263,17 @@ export default function SocialShare({
               {copied ? (
                 <>
                   <Check className="w-4 h-4 mr-2 text-green-600" />
-                  已复制
+                  Copied
                 </>
               ) : (
                 <>
                   <Copy className="w-4 h-4 mr-2" />
-                  复制链接
+                  Copy Link
                 </>
               )}
             </Button>
             <p className="text-xs text-gray-500">
-              复制链接到剪贴板
+              Copy link to clipboard
             </p>
           </CardContent>
         </Card>

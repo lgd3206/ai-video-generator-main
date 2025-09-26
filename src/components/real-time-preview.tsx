@@ -35,39 +35,39 @@ export default function RealTimePreview({
   const [autoPreview, setAutoPreview] = useState(false)
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
 
-  // 模拟关键帧生成
+  // Simulate keyframe generation
   const generatePreviewFrames = useCallback(async (inputPrompt: string) => {
     if (!inputPrompt.trim()) return []
 
     setIsGenerating(true)
 
-    // 模拟AI分析提示词并生成关键帧描述
+    // Simulate AI analysis of prompt and generate keyframe descriptions
     const mockFrames: PreviewFrame[] = [
       {
         timestamp: 0,
-        description: "开场：" + inputPrompt.split('。')[0] || inputPrompt.substring(0, 50),
+        description: "Opening: " + inputPrompt.split('.')[0] || inputPrompt.substring(0, 50),
         imageUrl: `/preview/frame-1.jpg`
       },
       {
         timestamp: 2000,
-        description: "发展：场景细节展现，" + (inputPrompt.split('。')[1] || "动态效果开始"),
+        description: "Development: Scene details emerge, " + (inputPrompt.split('.')[1] || "dynamic effects begin"),
         imageUrl: `/preview/frame-2.jpg`
       },
       {
         timestamp: 4000,
-        description: "高潮：主要内容呈现，" + (inputPrompt.split('。')[2] || "核心元素突出"),
+        description: "Climax: Main content presented, " + (inputPrompt.split('.')[2] || "core elements highlighted"),
         imageUrl: `/preview/frame-3.jpg`
       },
       {
         timestamp: 6000,
-        description: "结尾：" + (inputPrompt.includes('结束') || inputPrompt.includes('收尾')
-          ? inputPrompt.split('。').pop()
-          : "画面渐变收尾"),
+        description: "Ending: " + (inputPrompt.includes('ending') || inputPrompt.includes('conclusion')
+          ? inputPrompt.split('.').pop()
+          : "scene gradually fades out"),
         imageUrl: `/preview/frame-4.jpg`
       }
     ]
 
-    // 模拟生成延迟
+    // Simulate generation delay
     const delay = previewQuality === 'fast' ? 500 : previewQuality === 'balanced' ? 1000 : 2000
     await new Promise(resolve => setTimeout(resolve, delay))
 
@@ -75,7 +75,7 @@ export default function RealTimePreview({
     return mockFrames
   }, [previewQuality])
 
-  // 防抖处理自动预览
+  // Debounce handling for auto preview
   useEffect(() => {
     if (autoPreview && prompt.trim() && prompt.length > 10) {
       if (debounceTimer) {
@@ -135,23 +135,23 @@ export default function RealTimePreview({
 
   return (
     <div className={cn("space-y-4", className)}>
-      {/* 控制面板 */}
+      {/* Control Panel */}
       <Card>
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center space-x-2">
                 <Eye className="w-5 h-5 text-indigo-600" />
-                <span>实时预览</span>
+                <span>Real-time Preview</span>
               </CardTitle>
               <CardDescription>
-                输入提示词，实时查看AI视频的关键帧预览
+                Enter prompt to view AI video keyframe preview in real-time
               </CardDescription>
             </div>
             <div className="flex items-center space-x-2">
               <Badge variant={autoPreview ? "default" : "outline"} className="cursor-pointer"
                      onClick={() => setAutoPreview(!autoPreview)}>
-                {autoPreview ? "自动预览" : "手动预览"}
+                {autoPreview ? "Auto Preview" : "Manual Preview"}
               </Badge>
               <Button
                 variant="outline"
@@ -165,34 +165,34 @@ export default function RealTimePreview({
         </CardHeader>
 
         <CardContent className="space-y-4">
-          {/* 提示词输入 */}
+          {/* Prompt Input */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">视频描述提示词</label>
+            <label className="text-sm font-medium">Video Description Prompt</label>
             <Textarea
-              placeholder="详细描述你想要的视频内容，越具体预览效果越准确..."
+              placeholder="Describe your desired video content in detail, the more specific the better preview..."
               value={prompt}
               onChange={(e) => handlePromptChange(e.target.value)}
               rows={4}
               className="resize-none"
             />
             <div className="flex items-center justify-between text-sm text-gray-500">
-              <span>{prompt.length}/500 字符</span>
+              <span>{prompt.length}/500 characters</span>
               <div className="flex items-center space-x-4">
-                <span>预览质量:</span>
+                <span>Preview Quality:</span>
                 <select
                   value={previewQuality}
                   onChange={(e) => setPreviewQuality(e.target.value as 'fast' | 'balanced' | 'quality')}
                   className="text-sm border rounded px-2 py-1"
                 >
-                  <option value="fast">快速 (0.5s)</option>
-                  <option value="balanced">均衡 (1s)</option>
-                  <option value="quality">高质量 (2s)</option>
+                  <option value="fast">Fast (0.5s)</option>
+                  <option value="balanced">Balanced (1s)</option>
+                  <option value="quality">High Quality (2s)</option>
                 </select>
               </div>
             </div>
           </div>
 
-          {/* 操作按钮 */}
+          {/* Action Buttons */}
           <div className="flex items-center space-x-2">
             <Button
               onClick={handleGeneratePreview}
@@ -202,12 +202,12 @@ export default function RealTimePreview({
               {isGenerating ? (
                 <>
                   <LoadingSpinner size="sm" className="mr-2" />
-                  生成预览中...
+                  Generating preview...
                 </>
               ) : (
                 <>
                   <Sparkles className="w-4 h-4 mr-2" />
-                  生成预览
+                  Generate Preview
                 </>
               )}
             </Button>
@@ -215,7 +215,7 @@ export default function RealTimePreview({
               <>
                 <Button variant="outline" onClick={playPreview}>
                   <Play className="w-4 h-4 mr-1" />
-                  播放
+                  Play
                 </Button>
                 <Button variant="outline" onClick={() => setCurrentFrame(0)}>
                   <RotateCcw className="w-4 h-4" />
@@ -224,29 +224,29 @@ export default function RealTimePreview({
             )}
           </div>
 
-          {/* 预览提示 */}
+          {/* Preview Hint */}
           {!autoPreview && prompt.length > 10 && frames.length === 0 && (
             <div className="text-sm text-gray-500 bg-gray-50 rounded-lg p-3">
-              💡 提示：启用&ldquo;自动预览&rdquo;可在输入时实时生成预览效果
+              💡 Tip: Enable &ldquo;Auto Preview&rdquo; to generate preview effects in real-time while typing
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* 预览展示区域 */}
+      {/* Preview Display Area */}
       {isPreviewMode && frames.length > 0 && (
         <div className="grid lg:grid-cols-2 gap-4">
-          {/* 当前帧预览 */}
+          {/* Current Frame Preview */}
           <Card>
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg">当前帧预览</CardTitle>
+              <CardTitle className="text-lg">Current Frame Preview</CardTitle>
               <CardDescription>
-                时间点：{formatTime(frames[currentFrame]?.timestamp || 0)}
+                Timestamp: {formatTime(frames[currentFrame]?.timestamp || 0)}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="aspect-video bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center relative overflow-hidden">
-                {/* 模拟预览图 */}
+                {/* Mock Preview Image */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20"></div>
                 <div className="text-center z-10">
                   <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-4">
@@ -257,22 +257,22 @@ export default function RealTimePreview({
                   </p>
                 </div>
 
-                {/* 时间轴指示器 */}
+                {/* Timeline Indicator */}
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs">
-                    帧 {currentFrame + 1} / {frames.length}
+                    Frame {currentFrame + 1} / {frames.length}
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* 关键帧时间轴 */}
+          {/* Keyframe Timeline */}
           <Card>
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg">关键帧时间轴</CardTitle>
+              <CardTitle className="text-lg">Keyframe Timeline</CardTitle>
               <CardDescription>
-                点击任意帧快速预览
+                Click any frame for quick preview
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -304,11 +304,11 @@ export default function RealTimePreview({
                 ))}
               </div>
 
-              {/* 生成完整视频按钮 */}
+              {/* Generate Full Video Button */}
               <div className="mt-4 pt-4 border-t">
                 <Button className="w-full" variant="outline">
                   <Download className="w-4 h-4 mr-2" />
-                  基于此预览生成完整视频
+                  Generate Full Video Based on This Preview
                 </Button>
               </div>
             </CardContent>
@@ -316,20 +316,20 @@ export default function RealTimePreview({
         </div>
       )}
 
-      {/* 预览为空时的提示 */}
+      {/* Empty Preview Hint */}
       {isPreviewMode && frames.length === 0 && !isGenerating && (
         <Card className="border-dashed">
           <CardContent className="text-center py-12">
             <Sparkles className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              开始预览你的创意
+              Start Previewing Your Creativity
             </h3>
             <p className="text-gray-600 mb-6">
-              输入详细的视频描述，查看AI如何理解和展现你的想法
+              Enter a detailed video description to see how AI understands and presents your ideas
             </p>
             <Button onClick={handleGeneratePreview} disabled={!prompt.trim()}>
               <Sparkles className="w-4 h-4 mr-2" />
-              生成第一个预览
+              Generate First Preview
             </Button>
           </CardContent>
         </Card>
