@@ -26,13 +26,13 @@ export default function FreeTrial() {
     setGenerationProgress(0)
     setGeneratedVideoUrl(null)
 
-    // 模拟生成过程
+    // Simulate generation process
     for (let progress = 0; progress <= 100; progress += 5) {
       await new Promise(resolve => setTimeout(resolve, 100))
       setGenerationProgress(progress)
     }
 
-    // 模拟视频生成完成
+    // Simulate video generation completion
     setGeneratedVideoUrl("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
     setIsGenerating(false)
     setTrialUsed(true)
@@ -77,10 +77,10 @@ export default function FreeTrial() {
             <div className="flex items-center space-x-4">
               <Badge variant="secondary" className="bg-green-100 text-green-800">
                 <Gift className="w-3 h-3 mr-1" />
-                免费试用
+                Free Trial
               </Badge>
               <Link href="/auth/signup">
-                <Button size="sm">注册获取更多</Button>
+                <Button size="sm">Sign Up for More</Button>
               </Link>
             </div>
           </div>
@@ -91,29 +91,29 @@ export default function FreeTrial() {
           <div className="container mx-auto text-center">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Zap className="w-4 h-4" />
-              <span>限时免费体验</span>
+              <span>Limited Time Free Experience</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              30秒免费制作
-              <span className="text-indigo-600 block">AI专业视频</span>
+              Create Professional Videos in 30 Seconds
+              <span className="text-indigo-600 block">with AI Technology</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              无需注册，无需付费。立即体验AI视频生成的神奇效果，看看AI如何将你的文字描述转化为精美视频。
+              No registration required, no payment needed. Experience the magic of AI video generation instantly and see how AI transforms your text descriptions into beautiful videos.
             </p>
 
             <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 mb-8">
               <div className="flex items-center space-x-1">
                 <Clock className="w-4 h-4 text-green-600" />
-                <span>30秒快速生成</span>
+                <span>30-Second Generation</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Star className="w-4 h-4 text-yellow-600" />
-                <span>专业级质量</span>
+                <span>Professional Quality</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Gift className="w-4 h-4 text-purple-600" />
-                <span>完全免费</span>
+                <span>Completely Free</span>
               </div>
             </div>
           </div>

@@ -26,258 +26,258 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: '1',
-    title: '科技公司产品发布视频',
-    subtitle: '30秒内制作专业产品演示',
+    title: 'Tech Company Product Launch Video',
+    subtitle: 'Professional product demo in 30 seconds',
     company: 'TechFlow Solutions',
-    industry: 'SaaS软件',
-    challenge: '需要快速为新产品发布创建专业演示视频，传统制作方式成本高、周期长',
-    solution: '使用AI Video Studio的文本转视频功能，输入详细的产品功能描述和视觉要求',
+    industry: 'SaaS Software',
+    challenge: 'Needed to quickly create professional demo videos for new product launches. Traditional video production was expensive and time-consuming.',
+    solution: 'Used AI Video Studio\'s text-to-video feature, inputting detailed product functionality descriptions and visual requirements.',
     results: [
       {
-        metric: '制作时间',
-        value: '30秒',
-        description: '从概念到成品'
+        metric: 'Production Time',
+        value: '30 seconds',
+        description: 'From concept to finished product'
       },
       {
-        metric: '成本节省',
+        metric: 'Cost Savings',
         value: '95%',
-        description: '相比传统视频制作'
+        description: 'Compared to traditional video production'
       },
       {
-        metric: '观看完成率',
+        metric: 'Video Completion Rate',
         value: '87%',
-        description: '社交媒体表现'
+        description: 'Social media performance'
       },
       {
-        metric: '潜在客户增长',
+        metric: 'Lead Growth',
         value: '156%',
-        description: '发布后一周内'
+        description: 'Within one week of launch'
       }
     ],
     videoUrl: 'https://example.com/case-study-1.mp4',
     thumbnail: '/cases/techflow-thumbnail.jpg',
     testimonial: {
-      quote: 'AI Video Studio让我们在产品发布当天就拥有了专业级的演示视频。这种速度和质量的结合是前所未有的。',
-      author: '张明',
-      position: '市场总监',
-      avatar: '/avatars/zhang-ming.jpg'
+      quote: 'AI Video Studio enabled us to have professional-grade demo videos ready on the day of our product launch. This combination of speed and quality is unprecedented.',
+      author: 'Sarah Chen',
+      position: 'Marketing Director',
+      avatar: '/avatars/sarah-chen.jpg'
     },
-    tags: ['SaaS', '产品演示', '文本转视频', 'B2B营销'],
+    tags: ['SaaS', 'Product Demo', 'Text-to-Video', 'B2B Marketing'],
     featured: true
   },
   {
     id: '2',
-    title: '电商品牌宣传片',
-    subtitle: '从静态产品图创建动态广告',
-    company: '优选生活',
-    industry: '电商零售',
-    challenge: '拥有大量高质量产品照片，但需要将其转化为吸引人的视频广告来提升转化率',
-    solution: '利用图片转视频功能，为产品照片添加动态效果和背景音乐',
+    title: 'E-commerce Brand Commercial',
+    subtitle: 'Creating dynamic ads from static product photos',
+    company: 'Premium Lifestyle',
+    industry: 'E-commerce Retail',
+    challenge: 'Had many high-quality product photos but needed to transform them into engaging video ads to boost conversion rates.',
+    solution: 'Used image-to-video functionality to add dynamic effects and background music to product photos.',
     results: [
       {
-        metric: '转化率提升',
+        metric: 'Conversion Rate Increase',
         value: '42%',
-        description: '视频广告vs静态图片'
+        description: 'Video ads vs static images'
       },
       {
-        metric: '参与度',
-        value: '3.2倍',
-        description: '用户互动增长'
+        metric: 'Engagement',
+        value: '3.2x',
+        description: 'User interaction growth'
       },
       {
-        metric: '制作效率',
-        value: '10倍',
-        description: '相比传统制作'
+        metric: 'Production Efficiency',
+        value: '10x',
+        description: 'Compared to traditional production'
       },
       {
         metric: 'ROI',
         value: '280%',
-        description: '广告投资回报率'
+        description: 'Advertising return on investment'
       }
     ],
     videoUrl: 'https://example.com/case-study-2.mp4',
-    thumbnail: '/cases/youxuan-thumbnail.jpg',
+    thumbnail: '/cases/premium-thumbnail.jpg',
     testimonial: {
-      quote: '我们的产品照片瞬间变成了吸引眼球的视频广告。客户反响非常积极，销量显著提升。',
-      author: '李雯',
-      position: '营销经理',
-      avatar: '/avatars/li-wen.jpg'
+      quote: 'Our product photos instantly became eye-catching video advertisements. Customer response has been extremely positive, with significant sales growth.',
+      author: 'Michael Rodriguez',
+      position: 'Marketing Manager',
+      avatar: '/avatars/michael-rodriguez.jpg'
     },
-    tags: ['电商', '产品广告', '图片转视频', '转化优化'],
+    tags: ['E-commerce', 'Product Ads', 'Image-to-Video', 'Conversion Optimization'],
     featured: true
   },
   {
     id: '3',
-    title: '教育机构课程推广',
-    subtitle: '快速制作多语言课程预告',
-    company: '智学在线',
-    industry: '在线教育',
-    challenge: '需要为不同课程快速制作预告视频，覆盖多个学科和语言版本',
-    solution: '通过批量文本转视频，快速生成符合各学科特点的课程宣传内容',
+    title: 'Educational Institution Course Promotion',
+    subtitle: 'Quickly creating multilingual course previews',
+    company: 'SmartLearn Online',
+    industry: 'Online Education',
+    challenge: 'Needed to quickly create preview videos for different courses, covering multiple subjects and language versions.',
+    solution: 'Used batch text-to-video to rapidly generate promotional content suited to each subject\'s characteristics.',
     results: [
       {
-        metric: '视频产出',
+        metric: 'Video Output',
         value: '50+',
-        description: '一周内完成'
+        description: 'Completed in one week'
       },
       {
-        metric: '课程报名',
+        metric: 'Course Enrollment',
         value: '89%',
-        description: '增长率'
+        description: 'Growth rate'
       },
       {
-        metric: '学员满意度',
+        metric: 'Student Satisfaction',
         value: '4.8/5',
-        description: '视频质量评分'
+        description: 'Video quality rating'
       },
       {
-        metric: '制作成本',
-        value: '节省80%',
-        description: '相比外包制作'
+        metric: 'Production Cost',
+        value: '80% savings',
+        description: 'Compared to outsourced production'
       }
     ],
     videoUrl: 'https://example.com/case-study-3.mp4',
-    thumbnail: '/cases/zhixue-thumbnail.jpg',
+    thumbnail: '/cases/smartlearn-thumbnail.jpg',
     testimonial: {
-      quote: 'AI Video Studio帮助我们实现了规模化的视频内容生产，每个课程都有了专属的精美预告片。',
-      author: '王教授',
-      position: '教学总监',
-      avatar: '/avatars/wang-professor.jpg'
+      quote: 'AI Video Studio helped us achieve scaled video content production, with each course having its own dedicated, beautiful preview.',
+      author: 'Dr. Jennifer Liu',
+      position: 'Academic Director',
+      avatar: '/avatars/jennifer-liu.jpg'
     },
-    tags: ['教育', '课程推广', '批量制作', '多语言'],
+    tags: ['Education', 'Course Promotion', 'Batch Production', 'Multilingual'],
     featured: true
   },
   {
     id: '4',
-    title: '餐厅菜品展示视频',
-    subtitle: '美食照片变身诱人视频',
-    company: '味蕾印象',
-    industry: '餐饮服务',
-    challenge: '想要在社交媒体上更好地展示菜品，吸引更多顾客',
-    solution: '使用图片转视频功能，为菜品照片添加动态效果和氛围营造',
+    title: 'Restaurant Food Showcase Videos',
+    subtitle: 'Transforming food photos into appetizing videos',
+    company: 'Culinary Impressions',
+    industry: 'Food Service',
+    challenge: 'Wanted to better showcase dishes on social media to attract more customers.',
+    solution: 'Used image-to-video functionality to add dynamic effects and atmospheric elements to food photos.',
     results: [
       {
-        metric: '社交媒体曝光',
+        metric: 'Social Media Exposure',
         value: '300%',
-        description: '增长幅度'
+        description: 'Growth rate'
       },
       {
-        metric: '到店客流',
+        metric: 'In-store Traffic',
         value: '65%',
-        description: '月度增长'
+        description: 'Monthly growth'
       },
       {
-        metric: '在线订单',
+        metric: 'Online Orders',
         value: '120%',
-        description: '外卖平台增长'
+        description: 'Delivery platform growth'
       },
       {
-        metric: '品牌认知',
-        value: '显著提升',
-        description: '本地市场'
+        metric: 'Brand Awareness',
+        value: 'Significant boost',
+        description: 'Local market'
       }
     ],
     videoUrl: 'https://example.com/case-study-4.mp4',
-    thumbnail: '/cases/weilei-thumbnail.jpg',
+    thumbnail: '/cases/culinary-thumbnail.jpg',
     testimonial: {
-      quote: '我们的菜品视频在抖音上爆火了！现在每天都有很多人专门来店里品尝视频里的菜。',
-      author: '陈厨师',
-      position: '餐厅主理人',
-      avatar: '/avatars/chen-chef.jpg'
+      quote: 'Our food videos went viral on TikTok! Now people come to our restaurant specifically to try the dishes they saw in the videos.',
+      author: 'Chef Marcus Thompson',
+      position: 'Restaurant Owner',
+      avatar: '/avatars/marcus-thompson.jpg'
     },
-    tags: ['餐饮', '美食营销', '社交媒体', '本地推广'],
+    tags: ['Food & Beverage', 'Food Marketing', 'Social Media', 'Local Promotion'],
     featured: false
   },
   {
     id: '5',
-    title: '房地产项目宣传',
-    subtitle: '建筑效果图制作宣传视频',
-    company: '绿城地产',
-    industry: '房地产',
-    challenge: '需要将建筑设计图和效果图转化为吸引购房者的宣传视频',
-    solution: '结合图片转视频和文本描述，创建沉浸式的项目展示体验',
+    title: 'Real Estate Project Promotion',
+    subtitle: 'Creating promotional videos from architectural renderings',
+    company: 'GreenCity Properties',
+    industry: 'Real Estate',
+    challenge: 'Needed to transform architectural drawings and renderings into engaging promotional videos for potential buyers.',
+    solution: 'Combined image-to-video and text descriptions to create immersive project showcase experiences.',
     results: [
       {
-        metric: '看房预约',
+        metric: 'Property Viewings',
         value: '200%',
-        description: '同期增长'
+        description: 'Year-over-year growth'
       },
       {
-        metric: '销售转化',
+        metric: 'Sales Conversion',
         value: '35%',
-        description: '提升幅度'
+        description: 'Improvement rate'
       },
       {
-        metric: '品牌曝光',
-        value: '500万+',
-        description: '视频总播放量'
+        metric: 'Brand Exposure',
+        value: '5M+',
+        description: 'Total video views'
       },
       {
-        metric: '客户满意度',
+        metric: 'Customer Satisfaction',
         value: '92%',
-        description: '对宣传内容'
+        description: 'With promotional content'
       }
     ],
     videoUrl: 'https://example.com/case-study-5.mp4',
-    thumbnail: '/cases/lvcheng-thumbnail.jpg',
+    thumbnail: '/cases/greencity-thumbnail.jpg',
     testimonial: {
-      quote: '通过AI生成的项目视频，客户在实地看房前就对我们的项目有了深刻印象，大大提高了成交效率。',
-      author: '赵总',
-      position: '销售总监',
-      avatar: '/avatars/zhao-director.jpg'
+      quote: 'Through AI-generated project videos, customers have a deep impression of our projects before visiting in person, significantly improving closing efficiency.',
+      author: 'David Park',
+      position: 'Sales Director',
+      avatar: '/avatars/david-park.jpg'
     },
-    tags: ['房地产', '项目展示', '建筑可视化', '销售支持'],
+    tags: ['Real Estate', 'Project Showcase', 'Architectural Visualization', 'Sales Support'],
     featured: false
   },
   {
     id: '6',
-    title: '健身APP功能演示',
-    subtitle: '应用界面动态展示',
-    company: 'FitMax健身',
-    industry: '健康科技',
-    challenge: '需要制作APP功能演示视频，提升应用商店的下载转化率',
-    solution: '通过屏幕录制和AI增强，创建流畅的应用功能演示',
+    title: 'Fitness App Feature Demo',
+    subtitle: 'Dynamic app interface showcase',
+    company: 'FitMax Fitness',
+    industry: 'Health Technology',
+    challenge: 'Needed to create app feature demo videos to improve download conversion rates in app stores.',
+    solution: 'Used screen recording and AI enhancement to create smooth app functionality demonstrations.',
     results: [
       {
-        metric: 'APP下载量',
+        metric: 'App Downloads',
         value: '180%',
-        description: '增长幅度'
+        description: 'Growth rate'
       },
       {
-        metric: '用户留存',
+        metric: 'User Retention',
         value: '45%',
-        description: '7日留存率'
+        description: '7-day retention rate'
       },
       {
-        metric: '付费转化',
+        metric: 'Paid Conversion',
         value: '38%',
-        description: '提升比例'
+        description: 'Improvement rate'
       },
       {
-        metric: '应用评分',
+        metric: 'App Store Rating',
         value: '4.6/5',
-        description: '应用商店评分'
+        description: 'App store rating'
       }
     ],
     videoUrl: 'https://example.com/case-study-6.mp4',
     thumbnail: '/cases/fitmax-thumbnail.jpg',
     testimonial: {
-      quote: 'AI制作的演示视频完美展现了我们APP的核心功能，用户一看就懂，下载转化率大幅提升。',
-      author: '刘产品',
-      position: '产品经理',
-      avatar: '/avatars/liu-pm.jpg'
+      quote: 'The AI-created demo video perfectly showcases our app\'s core features. Users understand immediately, and download conversion rates have increased dramatically.',
+      author: 'Lisa Wang',
+      position: 'Product Manager',
+      avatar: '/avatars/lisa-wang.jpg'
     },
-    tags: ['移动应用', 'APP推广', '功能演示', '下载转化'],
+    tags: ['Mobile App', 'App Promotion', 'Feature Demo', 'Download Conversion'],
     featured: false
   }
 ]
 
 export const industries = [
-  { name: '全部', value: 'all', count: caseStudies.length },
-  { name: 'SaaS软件', value: 'saas', count: 1 },
-  { name: '电商零售', value: 'ecommerce', count: 1 },
-  { name: '在线教育', value: 'education', count: 1 },
-  { name: '餐饮服务', value: 'food', count: 1 },
-  { name: '房地产', value: 'realestate', count: 1 },
-  { name: '健康科技', value: 'healthtech', count: 1 }
+  { name: 'All', value: 'all', count: caseStudies.length },
+  { name: 'SaaS Software', value: 'saas', count: 1 },
+  { name: 'E-commerce', value: 'ecommerce', count: 1 },
+  { name: 'Online Education', value: 'education', count: 1 },
+  { name: 'Food Service', value: 'food', count: 1 },
+  { name: 'Real Estate', value: 'realestate', count: 1 },
+  { name: 'Health Tech', value: 'healthtech', count: 1 }
 ]
