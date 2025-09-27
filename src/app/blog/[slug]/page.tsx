@@ -104,7 +104,7 @@ export default function BlogPostPage() {
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Choose AI for Promotional Videos?</h2>
             <p className="text-gray-700 mb-6">
-              Traditional video production requires professional equipment, complex software, and significant time investment. AI video generation technology enables everyone to create professional-quality video content in seconds. Whether you're a marketer, small business owner, or content creator, AI can help you quickly realize your creative vision.
+              Traditional video production requires professional equipment, complex software, and significant time investment. AI video generation technology enables everyone to create professional-quality video content in seconds. Whether you&apos;re a marketer, small business owner, or content creator, AI can help you quickly realize your creative vision.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Production Process Overview</h2>

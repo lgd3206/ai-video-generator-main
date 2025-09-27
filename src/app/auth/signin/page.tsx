@@ -33,7 +33,7 @@ export default function SignInPage() {
       } else {
         router.push("/dashboard")
       }
-    } catch (_) {
+    } catch {
       setError("An error occurred during sign in")
     } finally {
       setIsLoading(false)

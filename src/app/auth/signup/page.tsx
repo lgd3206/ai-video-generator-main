@@ -89,7 +89,7 @@ function SignUpForm() {
         const data = await response.json()
         setError(data.error || "Registration failed")
       }
-    } catch (_) {
+    } catch {
       setError("An error occurred during registration")
     } finally {
       setIsLoading(false)
