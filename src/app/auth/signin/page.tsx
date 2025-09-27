@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -15,6 +15,44 @@ export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const errorParam = searchParams?.get('error')
+    if (errorParam) {
+      switch(errorParam) {
+        case 'OAuthSignin':
+          setError('Error occurred during OAuth sign in')
+          break
+        case 'OAuthCallback':
+          setError('Error occurred during OAuth callback')
+          break
+        case 'OAuthCreateAccount':
+          setError('Could not create OAuth account')
+          break
+        case 'EmailCreateAccount':
+          setError('Could not create email account')
+          break
+        case 'Callback':
+          setError('Error occurred during callback')
+          break
+        case 'OAuthAccountNotLinked':
+          setError('OAuth account not linked. Please sign in with your original method.')
+          break
+        case 'EmailSignin':
+          setError('Check your email address')
+          break
+        case 'CredentialsSignin':
+          setError('Sign in failed. Check your credentials.')
+          break
+        case 'SessionRequired':
+          setError('Please sign in to access this page')
+          break
+        default:
+          setError('An error occurred during sign in')
+      }
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -42,7 +80,16 @@ export default function SignInPage() {
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true)
-    await signIn("google", { callbackUrl: "/dashboard" })
+    try {
+      await signIn("google", {
+        callbackUrl: "/dashboard",
+        redirect: true
+      })
+    } catch (error) {
+      console.error("Google sign in error:", error)
+      setError("Failed to sign in with Google")
+      setIsLoading(false)
+    }
   }
 
   return (

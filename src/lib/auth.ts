@@ -83,6 +83,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/auth/signin",
     error: "/auth/signin", // Redirect errors to signin page
+    newUser: "/dashboard?welcome=true", // Redirect new users after first sign in
   },
   debug: process.env.NODE_ENV === "development",
 })
