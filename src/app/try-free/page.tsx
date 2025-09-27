@@ -269,7 +269,7 @@ export default function FreeTrial() {
         <section className="py-12 px-4 bg-white">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">
-              Don't know how to describe? Try these examples
+              Don&apos;t know how to describe? Try these examples
             </h2>
             <p className="text-gray-600 mb-8 text-center">
               Click the examples below to fill in the description box with one click

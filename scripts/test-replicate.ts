@@ -19,10 +19,9 @@ async function testReplicateAPI() {
     console.log('🔍 Creating new ReplicateService instance...')
 
     // Create a fresh instance to ensure it picks up the environment variables
-    const { ReplicateService } = await import('../src/lib/ai-services')
-    const testService = new (ReplicateService as any)()
+    const services = await import('../src/lib/ai-services')
 
-    const textToVideoResult = await testService.createTextToVideo({
+    const textToVideoResult = await services.replicateService.createTextToVideo({
       prompt: 'A cute orange cat playing with a colorful ball of yarn on a soft carpet, close-up view',
       duration: 2,
       fps: 8,
@@ -37,7 +36,7 @@ async function testReplicateAPI() {
     // Monitor generation progress
     if (textToVideoResult.id) {
       console.log('⏳ Waiting for generation to complete...')
-      const finalResult = await replicateService.waitForCompletion(textToVideoResult.id)
+      const finalResult = await services.replicateService.waitForCompletion(textToVideoResult.id)
       console.log('🎉 Generation completed!')
       console.log('Final status:', finalResult.status)
       if (finalResult.output) {
