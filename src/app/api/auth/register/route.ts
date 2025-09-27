@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import { addUser } from "@/lib/auth"
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,32 +12,49 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Check if user already exists
-    const existingUser = await prisma.user.findUnique({
-      where: { email }
-    })
-
-    if (existingUser) {
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: "User already exists" },
+        { error: "Invalid email format" },
         { status: 400 }
       )
     }
 
-    // Create user
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        // Note: We're not storing password in this schema for demo
-        // In production, add password field to User model
-      }
-    })
+    // Basic password validation
+    if (password.length < 6) {
+      return NextResponse.json(
+        { error: "Password must be at least 6 characters" },
+        { status: 400 }
+      )
+    }
 
-    return NextResponse.json(
-      { message: "User created successfully", userId: user.id },
-      { status: 201 }
-    )
+    try {
+      // Create user using our in-memory store
+      const user = addUser(email.toLowerCase().trim(), name.trim(), password)
+
+      return NextResponse.json(
+        {
+          message: "User created successfully",
+          userId: user.id,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email
+          }
+        },
+        { status: 201 }
+      )
+    } catch (error) {
+      if (error instanceof Error && error.message === "User already exists") {
+        return NextResponse.json(
+          { error: "User already exists" },
+          { status: 400 }
+        )
+      }
+      throw error
+    }
+
   } catch (error) {
     console.error("Registration error:", error)
     return NextResponse.json(

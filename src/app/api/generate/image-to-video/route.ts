@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
 import { replicateService } from "@/lib/ai-services"
-import { prisma } from "@/lib/prisma"
+
+// Simple in-memory store for demo purposes
+const generations = new Map<string, {
+  id: string
+  userId: string
+  type: string
+  prompt: string
+  imageUrl?: string
+  status: string
+  videoUrl?: string
+  errorMessage?: string
+  replicateId?: string
+  createdAt: Date
+}>()
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,21 +29,24 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Convert image to base64 or upload to storage
+    // Convert image to base64
     const bytes = await image.arrayBuffer()
     const buffer = Buffer.from(bytes)
     const base64Image = `data:${image.type};base64,${buffer.toString('base64')}`
 
-    // Create database record
-    const videoGeneration = await prisma.videoGeneration.create({
-      data: {
-        userId,
-        type: 'IMAGE_TO_VIDEO',
-        prompt: prompt || 'Animate this image',
-        imageUrl: base64Image, // In production, you'd upload to cloud storage
-        status: 'PENDING'
-      }
-    })
+    // Create generation record
+    const generationId = `gen-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    const generation = {
+      id: generationId,
+      userId,
+      type: 'IMAGE_TO_VIDEO',
+      prompt: prompt || 'Animate this image',
+      imageUrl: base64Image,
+      status: 'PENDING',
+      createdAt: new Date()
+    }
+
+    generations.set(generationId, generation)
 
     try {
       // Start video generation with Replicate
@@ -41,30 +57,29 @@ export async function POST(req: NextRequest) {
         fps: 24
       })
 
-      // Update database with processing status
-      await prisma.videoGeneration.update({
-        where: { id: videoGeneration.id },
-        data: {
-          status: 'PROCESSING'
-        }
-      })
+      // Update generation with processing status
+      const updatedGeneration = {
+        ...generation,
+        status: 'PROCESSING',
+        replicateId: replicateResult.id
+      }
+      generations.set(generationId, updatedGeneration)
 
       return NextResponse.json({
         success: true,
-        generationId: videoGeneration.id,
+        generationId: generationId,
         replicateId: replicateResult.id,
         status: replicateResult.status
       })
 
     } catch (apiError) {
-      // Update database with error
-      await prisma.videoGeneration.update({
-        where: { id: videoGeneration.id },
-        data: {
-          status: 'FAILED',
-          errorMessage: apiError instanceof Error ? apiError.message : 'Unknown error'
-        }
-      })
+      // Update generation with error
+      const errorGeneration = {
+        ...generation,
+        status: 'FAILED',
+        errorMessage: apiError instanceof Error ? apiError.message : 'Unknown error'
+      }
+      generations.set(generationId, errorGeneration)
 
       throw apiError
     }
@@ -90,23 +105,48 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    const videoGeneration = await prisma.videoGeneration.findUnique({
-      where: { id: generationId }
-    })
+    const generation = generations.get(generationId)
 
-    if (!videoGeneration) {
+    if (!generation) {
       return NextResponse.json(
         { error: "Generation not found" },
         { status: 404 }
       )
     }
 
+    // If we have a Replicate ID and status is processing, check Replicate
+    if (generation.replicateId && generation.status === 'PROCESSING') {
+      try {
+        const replicateResult = await replicateService.getGeneration(generation.replicateId)
+
+        if (replicateResult.status === 'succeeded' && replicateResult.output) {
+          const completedGeneration = {
+            ...generation,
+            status: 'COMPLETED',
+            videoUrl: Array.isArray(replicateResult.output)
+              ? replicateResult.output[0]
+              : replicateResult.output
+          }
+          generations.set(generationId, completedGeneration)
+        } else if (replicateResult.status === 'failed') {
+          const failedGeneration = {
+            ...generation,
+            status: 'FAILED',
+            errorMessage: replicateResult.error || 'Generation failed'
+          }
+          generations.set(generationId, failedGeneration)
+        }
+      } catch (error) {
+        console.error("Error checking Replicate status:", error)
+      }
+    }
+
     return NextResponse.json({
-      id: videoGeneration.id,
-      status: videoGeneration.status.toLowerCase(),
-      videoUrl: videoGeneration.videoUrl,
-      imageUrl: videoGeneration.imageUrl,
-      error: videoGeneration.errorMessage
+      id: generation.id,
+      status: generation.status.toLowerCase(),
+      videoUrl: generation.videoUrl,
+      imageUrl: generation.imageUrl,
+      error: generation.errorMessage
     })
 
   } catch (error) {

@@ -16,7 +16,8 @@
       "Bash(echo \"REPLICATE_API_TOKEN=$REPLICATE_API_TOKEN\")",
       "Bash(node -e \"console.log(require(''crypto'').randomBytes(32).toString(''base64''))\")",
       "Bash(npm run dev:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
