@@ -1,15 +1,28 @@
 // Test script to verify Replicate API connection
 // Run this with: npx tsx scripts/test-replicate.ts
 
+// Load environment variables
+import * as dotenv from 'dotenv'
+import * as path from 'path'
+dotenv.config({ path: path.join(__dirname, '..', '.env.local') })
+
 import { replicateService } from '../src/lib/ai-services'
 
 async function testReplicateAPI() {
   console.log('🧪 Testing Replicate API connection...')
+  console.log('🔑 REPLICATE_API_TOKEN:', process.env.REPLICATE_API_TOKEN ? '✅ Found' : '❌ Not found')
+  console.log('🔑 Token length:', process.env.REPLICATE_API_TOKEN?.length || 0)
 
   try {
     // Test text-to-video generation
     console.log('📝 Testing text-to-video generation...')
-    const textToVideoResult = await replicateService.createTextToVideo({
+    console.log('🔍 Creating new ReplicateService instance...')
+
+    // Create a fresh instance to ensure it picks up the environment variables
+    const { ReplicateService } = await import('../src/lib/ai-services')
+    const testService = new (ReplicateService as any)()
+
+    const textToVideoResult = await testService.createTextToVideo({
       prompt: 'A cute orange cat playing with a colorful ball of yarn on a soft carpet, close-up view',
       duration: 2,
       fps: 8,
