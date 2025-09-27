@@ -11,7 +11,12 @@
       "Bash(git add:*)",
       "Bash(git push:*)",
       "Bash(git commit:*)",
-      "WebFetch(domain:replicate.com)"
+      "WebFetch(domain:replicate.com)",
+      "Bash(npx tsx:*)",
+      "Bash(echo \"REPLICATE_API_TOKEN=$REPLICATE_API_TOKEN\")",
+      "Bash(node -e \"console.log(require(''crypto'').randomBytes(32).toString(''base64''))\")",
+      "Bash(npm run dev:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

@@ -128,20 +128,20 @@ export default function FreeTrial() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Sparkles className="w-5 h-5 text-indigo-600" />
-                    <span>描述你想要的视频</span>
+                    <span>Describe Your Video</span>
                   </CardTitle>
                   <CardDescription>
-                    详细描述你的想法，AI会根据你的描述生成专业视频
+                    Describe your ideas in detail, AI will generate professional videos based on your description
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <label htmlFor="prompt" className="text-sm font-medium">
-                      视频描述 {!trialUsed && <span className="text-green-600">(免费试用一次)</span>}
+                      Video Description {!trialUsed && <span className="text-green-600">(Free Trial Once)</span>}
                     </label>
                     <Textarea
                       id="prompt"
-                      placeholder="请描述你想要创建的视频内容..."
+                      placeholder="Describe the video content you want to create..."
                       value={prompt}
                       onChange={(e) => setPrompt(e.target.value)}
                       rows={6}
@@ -149,8 +149,8 @@ export default function FreeTrial() {
                       className="resize-none"
                     />
                     <div className="flex justify-between text-xs text-gray-500">
-                      <span>{prompt.length}/500 字符</span>
-                      <span>越详细效果越好</span>
+                      <span>{prompt.length}/500 characters</span>
+                      <span>More details, better results</span>
                     </div>
                   </div>
 
@@ -158,7 +158,7 @@ export default function FreeTrial() {
                   {isGenerating && (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">AI正在生成视频...</span>
+                        <span className="text-sm font-medium">AI is generating video...</span>
                         <span className="text-sm text-gray-500">{Math.round(generationProgress)}%</span>
                       </div>
                       <Progress value={generationProgress} className="w-full" />
@@ -174,14 +174,14 @@ export default function FreeTrial() {
                     {isGenerating ? (
                       <>
                         <LoadingSpinner size="sm" className="mr-2" />
-                        生成中...
+                        Generating...
                       </>
                     ) : trialUsed ? (
-                      "试用已完成"
+                      "Trial Completed"
                     ) : (
                       <>
                         <Sparkles className="w-4 h-4 mr-2" />
-                        免费生成视频
+                        Generate Free Video
                       </>
                     )}
                   </Button>
@@ -189,16 +189,16 @@ export default function FreeTrial() {
                   {trialUsed && (
                     <div className="text-center p-4 bg-indigo-50 rounded-lg">
                       <p className="text-sm text-indigo-800 mb-3">
-                        🎉 免费试用已完成！想要生成更多视频？
+                        🎉 Free trial completed! Want to generate more videos?
                       </p>
                       <Link href="/auth/signup">
                         <Button size="sm" className="mr-2">
-                          注册获取免费额度
+                          Sign Up for Free Credits
                         </Button>
                       </Link>
                       <Link href="/blog">
                         <Button size="sm" variant="outline">
-                          查看更多教程
+                          View More Tutorials
                         </Button>
                       </Link>
                     </div>
@@ -211,10 +211,10 @@ export default function FreeTrial() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Play className="w-5 h-5 text-purple-600" />
-                    <span>视频预览</span>
+                    <span>Video Preview</span>
                   </CardTitle>
                   <CardDescription>
-                    生成的视频将在这里显示
+                    Generated videos will be displayed here
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -229,32 +229,32 @@ export default function FreeTrial() {
                           poster="/api/placeholder/600/400"
                         >
                           <source src={generatedVideoUrl} type="video/mp4" />
-                          您的浏览器不支持视频播放。
+                          Your browser does not support video playback.
                         </video>
                       </div>
 
                       <div className="flex space-x-2">
                         <Button className="flex-1">
                           <Download className="w-4 h-4 mr-2" />
-                          下载视频
+                          Download Video
                         </Button>
                         <Button variant="outline" className="flex-1">
                           <ArrowRight className="w-4 h-4 mr-2" />
-                          注册制作更多
+                          Sign Up for More
                         </Button>
                       </div>
 
                       <div className="text-center text-sm text-gray-500">
-                        免费版本带有水印，注册后可下载无水印版本
+                        Free version includes watermark, sign up to download watermark-free version
                       </div>
                     </div>
                   ) : (
                     <div className="aspect-video bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
                       <div className="text-center">
                         <Play className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-500 font-medium mb-2">视频将在这里显示</p>
+                        <p className="text-gray-500 font-medium mb-2">Video will be displayed here</p>
                         <p className="text-sm text-gray-400">
-                          输入描述并点击生成按钮
+                          Enter description and click generate button
                         </p>
                       </div>
                     </div>
@@ -269,10 +269,10 @@ export default function FreeTrial() {
         <section className="py-12 px-4 bg-white">
           <div className="container mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">
-              不知道如何描述？试试这些示例
+              Don't know how to describe? Try these examples
             </h2>
             <p className="text-gray-600 mb-8 text-center">
-              点击下方示例，一键填入描述框
+              Click the examples below to fill in the description box with one click
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -293,7 +293,7 @@ export default function FreeTrial() {
                     </p>
                     <Button variant="ghost" size="sm" className="mt-3 p-0 h-auto text-indigo-600"
                             disabled={trialUsed}>
-                      点击使用此描述 →
+                      Click to use this description →
                     </Button>
                   </CardContent>
                 </Card>
@@ -306,7 +306,7 @@ export default function FreeTrial() {
         <section className="py-16 px-4">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-              为什么选择我们的AI视频生成器？
+              Why choose our AI video generator?
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -314,9 +314,9 @@ export default function FreeTrial() {
                 <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="w-8 h-8 text-indigo-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">极速生成</h3>
+                <h3 className="text-xl font-semibold mb-3">Ultra-Fast Generation</h3>
                 <p className="text-gray-600">
-                  从文字描述到完成视频，仅需30秒。比传统视频制作快100倍。
+                  From text description to finished video in just 30 seconds. 100x faster than traditional video production.
                 </p>
               </div>
 
@@ -324,9 +324,9 @@ export default function FreeTrial() {
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="w-8 h-8 text-purple-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">专业品质</h3>
+                <h3 className="text-xl font-semibold mb-3">Professional Quality</h3>
                 <p className="text-gray-600">
-                  AI生成的视频具有专业级的视觉效果和流畅的动画表现。
+                  AI-generated videos feature professional-grade visual effects and smooth animation performance.
                 </p>
               </div>
 
@@ -334,9 +334,9 @@ export default function FreeTrial() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Zap className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">简单易用</h3>
+                <h3 className="text-xl font-semibold mb-3">Easy to Use</h3>
                 <p className="text-gray-600">
-                  无需专业知识，只要能描述想法，就能制作出精美的视频内容。
+                  No professional knowledge required, just describe your ideas to create beautiful video content.
                 </p>
               </div>
             </div>
@@ -347,54 +347,54 @@ export default function FreeTrial() {
         <section className="py-16 px-4 bg-gradient-to-r from-indigo-600 to-purple-600">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
-              体验满意？获取完整版本
+              Satisfied with the experience? Get the full version
             </h2>
             <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
-              注册账户，享受无限制视频生成、无水印下载、高清输出等专业功能
+              Register for unlimited video generation, watermark-free downloads, HD output and other professional features
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">免费版</h3>
-                <div className="text-2xl font-bold text-white mb-4">¥0</div>
+                <h3 className="text-lg font-semibold text-white mb-2">Free Plan</h3>
+                <div className="text-2xl font-bold text-white mb-4">$0</div>
                 <ul className="text-indigo-100 text-sm space-y-2">
-                  <li>• 每日1次免费生成</li>
-                  <li>• 标清视频质量</li>
-                  <li>• 带水印</li>
-                  <li>• 基础客服支持</li>
+                  <li>• 1 free generation per day</li>
+                  <li>• Standard video quality</li>
+                  <li>• With watermark</li>
+                  <li>• Basic customer support</li>
                 </ul>
               </div>
 
               <div className="bg-white rounded-lg p-6 transform scale-105">
                 <div className="text-center mb-4">
-                  <Badge className="bg-yellow-500 text-white">推荐</Badge>
+                  <Badge className="bg-yellow-500 text-white">Recommended</Badge>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业版</h3>
-                <div className="text-2xl font-bold text-gray-900 mb-4">¥99<span className="text-sm font-normal">/月</span></div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Pro Plan</h3>
+                <div className="text-2xl font-bold text-gray-900 mb-4">$19<span className="text-sm font-normal">/month</span></div>
                 <ul className="text-gray-700 text-sm space-y-2 mb-6">
-                  <li>• 无限视频生成</li>
-                  <li>• 4K高清输出</li>
-                  <li>• 无水印</li>
-                  <li>• 优先客服支持</li>
+                  <li>• Unlimited video generation</li>
+                  <li>• 4K HD output</li>
+                  <li>• No watermark</li>
+                  <li>• Priority customer support</li>
                 </ul>
-                <Button className="w-full">立即升级</Button>
+                <Button className="w-full">Upgrade Now</Button>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">企业版</h3>
-                <div className="text-2xl font-bold text-white mb-4">定制</div>
+                <h3 className="text-lg font-semibold text-white mb-2">Enterprise</h3>
+                <div className="text-2xl font-bold text-white mb-4">Custom</div>
                 <ul className="text-indigo-100 text-sm space-y-2">
-                  <li>• 批量视频生成</li>
-                  <li>• API接口集成</li>
-                  <li>• 定制化功能</li>
-                  <li>• 专属客户经理</li>
+                  <li>• Batch video generation</li>
+                  <li>• API integration</li>
+                  <li>• Custom features</li>
+                  <li>• Dedicated account manager</li>
                 </ul>
               </div>
             </div>
 
             <Link href="/auth/signup">
               <Button size="lg" variant="secondary" className="px-8">
-                立即注册，获取免费额度
+                Sign Up Now, Get Free Credits
               </Button>
             </Link>
           </div>

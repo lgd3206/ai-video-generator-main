@@ -79,12 +79,7 @@ export default function ImageToVideoPage() {
   }
 
   const handleGenerate = async () => {
-    if (!selectedImage) return
-
-    // Log file info for debugging (this uses imageFile)
-    if (imageFile) {
-      console.log('Processing file:', imageFile.name, imageFile.size)
-    }
+    if (!selectedImage || !imageFile) return
 
     setIsGenerating(true)
     setGenerationProgress(0)
@@ -93,32 +88,89 @@ export default function ImageToVideoPage() {
     // Reset steps
     setGenerationSteps(prev => prev.map(step => ({ ...step, completed: false, active: false })))
 
-    // Simulate generation process
-    for (let i = 0; i < generationSteps.length; i++) {
-      // Activate current step
-      setGenerationSteps(prev => prev.map((step, index) => ({
-        ...step,
-        active: index === i,
-        completed: index < i
-      })))
+    try {
+      // For demo purposes, we'll use a mock userId. In a real app, this would come from authentication
+      const mockUserId = 'demo-user-' + Date.now()
 
-      // Simulate processing time for each step
-      for (let progress = 0; progress <= 100; progress += 10) {
-        await new Promise(resolve => setTimeout(resolve, 300))
-        setGenerationProgress(((i * 100) + progress) / generationSteps.length)
+      // Prepare form data
+      const formData = new FormData()
+      formData.append('image', imageFile)
+      formData.append('userId', mockUserId)
+      formData.append('prompt', 'Animate this image with subtle motion')
+
+      // Call the actual API
+      const response = await fetch('/api/generate/image-to-video', {
+        method: 'POST',
+        body: formData
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to start image animation')
       }
 
-      // Mark current step as completed
-      setGenerationSteps(prev => prev.map((step, index) => ({
-        ...step,
-        active: false,
-        completed: index <= i
-      })))
-    }
+      const result = await response.json()
 
-    // Simulate video generation completion
-    setGeneratedVideoUrl("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
-    setIsGenerating(false)
+      if (!result.success) {
+        throw new Error(result.error || 'Animation failed')
+      }
+
+      // Simulate UI progress while the actual generation happens
+      for (let i = 0; i < generationSteps.length; i++) {
+        // Activate current step
+        setGenerationSteps(prev => prev.map((step, index) => ({
+          ...step,
+          active: index === i,
+          completed: index < i
+        })))
+
+        // Simulate processing time for each step
+        for (let progress = 0; progress <= 100; progress += 10) {
+          await new Promise(resolve => setTimeout(resolve, 300))
+          setGenerationProgress(((i * 100) + progress) / generationSteps.length)
+        }
+
+        // Mark current step as completed
+        setGenerationSteps(prev => prev.map((step, index) => ({
+          ...step,
+          active: false,
+          completed: index <= i
+        })))
+      }
+
+      // Poll for completion (in a real app, you'd use webhooks or websockets)
+      let attempts = 0
+      const maxAttempts = 30 // 5 minutes max
+
+      while (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, 10000)) // Wait 10 seconds
+
+        const statusResponse = await fetch(`/api/generate/image-to-video?id=${result.generationId}`)
+        const statusData = await statusResponse.json()
+
+        if (statusData.status === 'completed' && statusData.videoUrl) {
+          setGeneratedVideoUrl(statusData.videoUrl)
+          break
+        } else if (statusData.status === 'failed') {
+          throw new Error(statusData.error || 'Image animation failed')
+        }
+
+        attempts++
+      }
+
+      if (attempts >= maxAttempts) {
+        throw new Error('Image animation timed out. Please try again.')
+      }
+
+    } catch (error) {
+      console.error('Generation error:', error)
+      // Fallback to demo video on error
+      setGeneratedVideoUrl("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
+
+      // Show error message to user
+      alert(`Animation failed: ${error instanceof Error ? error.message : 'Unknown error'}. Showing demo video instead.`)
+    } finally {
+      setIsGenerating(false)
+    }
   }
 
   const handleDownload = () => {

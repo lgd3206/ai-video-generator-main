@@ -9,6 +9,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -25,32 +26,37 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return null
         }
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email as string,
-          },
-        })
+        try {
+          const user = await prisma.user.findUnique({
+            where: {
+              email: credentials.email as string,
+            },
+          })
 
-        if (!user) {
+          if (!user) {
+            return null
+          }
+
+          // For demo purposes, we'll assume password is stored hashed
+          // In real implementation, you'd compare with bcrypt
+          // const isPasswordValid = await bcrypt.compare(
+          //   credentials.password as string,
+          //   user.password
+          // )
+
+          // if (!isPasswordValid) {
+          //   return null
+          // }
+
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            image: user.image,
+          }
+        } catch (error) {
+          console.error("Auth error:", error)
           return null
-        }
-
-        // For demo purposes, we'll assume password is stored hashed
-        // In real implementation, you'd compare with bcrypt
-        // const isPasswordValid = await bcrypt.compare(
-        //   credentials.password as string,
-        //   user.password
-        // )
-
-        // if (!isPasswordValid) {
-        //   return null
-        // }
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          image: user.image,
         }
       },
     }),
@@ -72,4 +78,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/auth/signin",
   },
+  debug: process.env.NODE_ENV === "development",
 })
