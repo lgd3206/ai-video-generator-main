@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Google OAuth credentials (sensitive)
+*client_secret*.json
+客户端密钥*.json
+
 # vercel
 .vercel
 
